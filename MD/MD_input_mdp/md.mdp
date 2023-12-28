@@ -1,0 +1,87 @@
+
+
+; RUN CONTROL PARAMETERS
+integrator               = md
+; Start time and timestep in ps
+tinit                    = 0
+dt                       = 0.002
+nsteps                   = -1
+; For exact run continuation or redoing part of a run
+init-step                = 0
+; Part index is updated automatically on checkpointing (keeps files separate)
+simulation-part          = 1
+; mode for center of mass motion removal
+comm-mode                = Linear
+; number of steps for center of mass motion removal
+nstcomm                  = 100
+
+
+; Output control
+nstxout		= 50000		; save coordinates every 1. ps
+nstvout		= 50000		; save velocities every 1. ps
+nstfout		= 50000		; save velocities every 1. ps
+nstenergy	= 50000		; save energies every 1. ps
+nstcalcenergy   =  100
+nstlog		= 50000		; update log file every 1. ps
+
+; Output frequency and precision for xtc file
+nstxtcout       = 50000          ; save             (*)
+xtc-precision   = 1000
+
+
+; NEIGHBORSEARCHING PARAMETERS
+; cut-off scheme (group: using charge groups, Verlet: particle based cut-offs)
+cutoff-scheme            = Verlet
+; nblist update frequency
+nstlist                  = 10
+; ns algorithm (simple or grid)
+ns-type                  = Grid
+; Periodic boundary conditions: xyz, no, xy
+pbc                      = xyz
+periodic-molecules       = no
+; nblist cut-off
+rlist                    = 1
+
+; OPTIONS FOR ELECTROSTATICS AND VDW
+; Method for doing electrostatics
+coulombtype              = PME
+coulomb-modifier         = Potential-shift-Verlet
+rcoulomb                 = 1
+; Method for doing Van der Waals
+vdw-type                 = Cut-off
+vdw-modifier             = Potential-shift-Verlet
+; cut-off lengths
+rvdw                     = 1
+; Apply long range dispersion corrections for Energy and Pressure
+DispCorr                 = EnerPres
+optimize-fft             = yes
+
+; OPTIONS FOR WEAK COUPLING ALGORITHMS
+; Temperature coupling
+tcoupl                   = v-rescale
+nsttcouple               = -1
+; Groups to couple separately
+tc-grps                  = Protein Non-Protein
+; Time constant (ps) and reference temperature (K)
+tau-t                    = 0.1 0.1
+ref-t                    = 300 300
+; pressure coupling
+pcoupl                   = Berendsen ;Parrinello-Rahman
+pcoupltype               = Isotropic
+nstpcouple               = -1
+; Time constant (ps), compressibility (1/bar) and reference P (bar)
+tau-p                    = 2.0
+compressibility          = 4.5e-5
+ref-p                    = 1.0
+
+; GENERATE VELOCITIES FOR STARTUP RUN
+gen-vel                  = yes
+gen-temp                 = 300
+gen-seed                 = 5034891
+
+; OPTIONS FOR BONDS
+constraints              = h-bonds
+; Type of constraint algorithm
+constraint-algorithm     = Lincs
+; Do not constrain the start configuration
+;continuation             = yes
