@@ -34,3 +34,7 @@ torch 2.6.0+cu124
 xgboost 2.1.2
 
 ngboost 0.5.1
+
+### Data:
+Raw data and processed data for ML can be downloaded from https://drive.google.com/file/d/1NCTE-2R0GyTNT-6PdBrAAqBrJ4ybY1oh/view?usp=sharing. To run ML code, unzip the file and put the data to the local folder. ML code will use pkl file in /processed_data to make model training and evaluation. The raw data is stored in /data: CSV files contain the kinase ID, feature matrix, and corresponding labels, while NPY files hold the training data for PCA.
+
