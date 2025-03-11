@@ -25,7 +25,11 @@ NNmodel.py contains the neural network model.
 NNtrainer.py contains cross validation code to train and evaluate neural networks.
 The code was tested under 
 numpy 1.26.4
+
 sklearn 1.4.2
+
 torch 2.6.0+cu124
+
 xgboost 2.1.2
+
 ngboost 0.5.1
