@@ -18,3 +18,14 @@ This folder contains the input structures of selected kinase mutants, ATP, and p
  2. Peptide_Substrates - Four .mae structures of peptide substrates of five kinases. Peptide PEYIN was used for both EGFR and HER2 mutant systems
  3. ATP_qtot-4.mae - Structure of ATP<sup>4-</sup>
  4. TopPoses - .pdb files of top ranked poses of Kinase-ATP-peptide complexes for each mutant system. Poses were ranked using Glide Score and only poses that met the biological validitiy criteria were kept for ranking
+
+### Machine learning:
+classicML.py contains cross validation code to train and evaluate classic ML methods (GBDT, nGBDT and SVM).
+NNmodel.py contains the neural network model.
+NNtrainer.py contains cross validation code to train and evaluate neural networks.
+The code was tested under 
+numpy 1.26.4
+sklearn 1.4.2
+torch 2.6.0+cu124
+xgboost 2.1.2
+ngboost 0.5.1
