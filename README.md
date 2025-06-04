@@ -38,3 +38,17 @@ ngboost 0.5.1
 ### Data:
 Raw data and processed data for ML can be downloaded from https://drive.google.com/file/d/1NCTE-2R0GyTNT-6PdBrAAqBrJ4ybY1oh/view?usp=sharing. To run ML code, unzip the file and put the data to the local folder. ML code will use pkl file in /processed_data to make model training and evaluation. The raw data is stored in /data: CSV files contain the kinase ID, feature matrix, and corresponding labels, while NPY files hold the training data for PCA.
 
+### ESM2_feature_generation:
+- wildtype_kinase_data.csv contains kinase amino acid sequences and kinase domain locations
+- mutant_df.csv contains kinase missense mutation data and mutated sequences ready for ESM2 feature generation 
+- esm_embedding_pipeline.ipynb contains code on data processing kinase sequence data and generation of ESM2 protein language model embeddings and associated PCA features. 
+
+```
+pip install fair-esm
+```
+to use the ESM2 models. For more information, please consult https://github.com/facebookresearch/esm
+
+- *_esm_and_pca_embeddings.csv files contain the generated ESM2 and PCA embeddings for various types of embeddings
+    - first_token refers to the use of the CLS or first embedding produced by the ESM2 protein language model while mutation_token refers to using the embedding at the mutated residue
+    - whole_protein refers to using the entire protein sequence as input to ESM2 while kinase_domain refers to using the kinase domain sequence 
+
