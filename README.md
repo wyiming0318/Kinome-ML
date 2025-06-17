@@ -36,7 +36,15 @@ xgboost 2.1.2
 ngboost 0.5.1
 
 ### Data:
-Raw data and processed data for ML can be downloaded from https://drive.google.com/file/d/1NCTE-2R0GyTNT-6PdBrAAqBrJ4ybY1oh/view?usp=sharing. To run ML code, unzip the file and put the data to the local folder. ML code will use pkl file in /processed_data to make model training and evaluation. The raw data is stored in /data: CSV files contain the kinase ID, feature matrix, and corresponding labels, while NPY files hold the training data for PCA.
+Raw data and processed data for ML can be downloaded from https://drive.google.com/file/d/1NCTE-2R0GyTNT-6PdBrAAqBrJ4ybY1oh/view?usp=sharing. To run ML code, unzip the file and put the data to the local folder.
+
+./data/ESM2_first_token_emb_train.npy: CLS token embeddings of wild type kinase domain sequences extracted by ESM-2 (training data for PCA);
+
+./data/ESM2_mutation_token_emb_train.npy: Token embeddings of all mutation sites from kinase domains extracted by ESM-2 (training data for PCA);
+
+./data/data.csv: Curated kinase mutation dataset. Each row is a kinase mutation sample with feature vector, activation status and ID provided;
+
+./processed_data/dataset.pkl: a pickle file containing data extracted from ./data/data.csv. Our ML code directly loads this file for model training and evaluation. Specifically, it is a list containing (1) feature matrix of kinase mutations, (2) a binary vector indicating the activation status of kinase mutations, (3) a vector indicating the confidence/fidelity of the activation status labels, (4) a binary vector indicating whether a kinase mutation has privileged features, (5) numpy array of ./data/ESM2_first_token_emb_train.npy (used for dimensionality reduction purpose), (6) numpy array of ./data/ESM2_mutation_token_emb_train.npy (used for dimensionality reduction purpose), (6) a list containing the dimension size of different types of features used in this study (i.e., ESM_first_dim, ESM_mutated_dim, group_code_dim, basic_feat_dim, MD_feat_dim, dock_feat_dim).
 
 ### ESM2_feature_generation:
 - wildtype_kinase_data.csv contains kinase amino acid sequences and kinase domain locations
