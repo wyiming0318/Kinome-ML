@@ -1,4 +1,4 @@
-# CancerAI_Files_2023
+# Kinome-ML_Files_2023
 README: Supporting data for 2023 manuscript Wang et. al. The support files consist of two folders in which a MD folder includes the files to setup Molecular Dynamics simulations and post-processing scripts for feature extraction, as well as a Docking folder with input structure files for molecular docking and resulting poses of docked ternary complexes.
 ## Folders and Subfolders
 ### MD: 
