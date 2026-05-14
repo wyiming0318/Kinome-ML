@@ -11,7 +11,7 @@ Ensemble_per_subtype_pi_nopi_all.csv: averaged the predictions from GBDT and neu
   - Predictions from the neural network model.
 - `UsedESM2_ensemble_pred_byrep.csv`
   - Predictions from the NN+GBDT ensemble model.
-    
+Under ESM_feature_generation, see mutant_df.csv for experimental ground truth labels for 1003 kinases    
 - `Label`: ground-truth binary label (0/1).
 - `Kinase`: kinase name.
 - `mutation`: mutation identifier.
