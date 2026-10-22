@@ -44,19 +44,11 @@ Raw data and processed data for ML can be downloaded from https://drive.google.c
 
 ./data/data.csv: Curated kinase mutation dataset. Each row is a kinase mutation sample with feature vector, activation status and ID provided;
 
-./processed_data/dataset.pkl: a pickle file containing data extracted from ./data/data.csv. Our ML code directly loads this file for model training and evaluation. Specifically, it is a list containing (1) feature matrix of kinase mutations, (2) a binary vector indicating the activation status of kinase mutations, (3) a vector indicating the confidence/fidelity of the activation status labels, (4) a binary vector indicating whether a kinase mutation has privileged features, (5) numpy array of ./data/ESM2_first_token_emb_train.npy (used for dimensionality reduction purpose), (6) numpy array of ./data/ESM2_mutation_token_emb_train.npy (used for dimensionality reduction purpose), (6) a list containing the dimension size of different types of features used in this study (i.e., ESM_first_dim, ESM_mutated_dim, group_code_dim, basic_feat_dim, MD_feat_dim, dock_feat_dim).
+./processed_data/dataset.pkl: a pickle file containing data extracted from ./data/data.csv. Our ML code directly loads this file for model training and evaluation. Specifically, it is a list containing (1) feature matrix of kinase mutations, (2) a binary vector indicating the activation status of kinase mutations, (3) a vector indicating the confidence/fidelity of the activation status labels, (4) a binary vector indicating whether a kinase mutation has privileged features, (5) numpy array of ./data/ESM2_first_token_emb_train.npy (used for dimensionality reduction purpose), (6) numpy array of ./data/ESM2_mutation_token_emb_train.npy (used for dimensionality reduction purpose), (7) a list containing the dimension size of different types of features used in this study (i.e., ESM_first_dim, ESM_mutated_dim, group_code_dim, basic_feat_dim, MD_feat_dim, dock_feat_dim).
 
-### ESM2_feature_generation:
-- wildtype_kinase_data.csv contains kinase amino acid sequences and kinase domain locations
-- mutant_df.csv contains kinase missense mutation data and mutated sequences ready for ESM2 feature generation 
-- esm_embedding_pipeline.ipynb contains code on data processing kinase sequence data and generation of ESM2 protein language model embeddings and associated PCA features. 
+### ESM_feature_generation:
 
-```
-pip install fair-esm
-```
-to use the ESM2 models. For more information, please consult https://github.com/facebookresearch/esm
-
-- *_esm_and_pca_embeddings.csv files contain the generated ESM2 and PCA embeddings for various types of embeddings
-    - first_token refers to the use of the CLS or first embedding produced by the ESM2 protein language model while mutation_token refers to using the embedding at the mutated residue
-    - whole_protein refers to using the entire protein sequence as input to ESM2 while kinase_domain refers to using the kinase domain sequence 
-
+- Retained `wildtype_kinase_data.csv` and `mutant_df.csv` provide original reference sequences, domain coordinates and 1,003 experimental mutation records; they are not the complete training feature matrix.
+- `01_KD_ESM_Feature_Generation.ipynb` validates sequence/coordinate identities and generates KD-only ESM-2 layer-33 mutant BOS and mutation-residue vectors (1,280 dimensions each), with out-of-KD rows explicitly unscorable.
+- `02_Training_Data_and_PCA_Workflow.ipynb` documents the unchanged original training-data layout and two unstandardized reference PCAs: **50 components each, 100 combined**. Inference reuses model-associated saved preprocessing; classical no-PI models use 167 inputs, while released NN checkpoints use their recorded input dimensions (100 in the current released bundle).
+- See [the folder README](ESM_feature_generation/README.md) for dependencies, optional execution settings and historical-provenance limitations. The superseded exploratory notebook and four inconsistent embedding/PCA exports were removed; the source CSVs and license remain unchanged. Newly generated embeddings do not replace historical training features.

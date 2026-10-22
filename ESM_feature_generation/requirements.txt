@@ -1,0 +1,12 @@
+# Reference notebook/test environment (Python 3.11); no classifier retraining here.
+numpy==1.26.4
+pandas==2.1.4
+scikit-learn==1.6.1
+torch==2.5.1
+transformers==4.48.1
+joblib==1.2.0
+threadpoolctl==3.6.0
+nbformat==5.9.2
+nbclient==0.8.0
+ipykernel==6.28.0
+pytest==7.4.0
