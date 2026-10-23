@@ -46,6 +46,8 @@ Raw data and processed data for ML can be downloaded from https://drive.google.c
 
 ./processed_data/dataset.pkl: a pickle file containing data extracted from ./data/data.csv. Our ML code directly loads this file for model training and evaluation. Specifically, it is a list containing (1) feature matrix of kinase mutations, (2) a binary vector indicating the activation status of kinase mutations, (3) a vector indicating the confidence/fidelity of the activation status labels, (4) a binary vector indicating whether a kinase mutation has privileged features, (5) numpy array of ./data/ESM2_first_token_emb_train.npy (used for dimensionality reduction purpose), (6) numpy array of ./data/ESM2_mutation_token_emb_train.npy (used for dimensionality reduction purpose), (7) a list containing the dimension size of different types of features used in this study (i.e., ESM_first_dim, ESM_mutated_dim, group_code_dim, basic_feat_dim, MD_feat_dim, dock_feat_dim).
 
+The [data/independent-validation](data/independent-validation) subfolder contains scored-variant lists and complete annotated prediction tables for FGFR, HER2 and ERK2/MAPK1, including experimental labels, model outputs, and SIFT/PolyPhen and hotspot-based evaluation scenarios. Its [README](data/independent-validation/README.md) provides dataset counts, column definitions, and the distinction between baseline predictions and retrospective hotspot-assisted results.
+
 ### ESM_feature_generation:
 
 - Retained `wildtype_kinase_data.csv` and `mutant_df.csv` provide original reference sequences, domain coordinates and 1,003 experimental mutation records; they are not the complete training feature matrix.
